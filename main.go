@@ -3,7 +3,6 @@ package main
 import (
 	Mysql "GinDemo/Databases"
 	"GinDemo/Router"
-	//"Gindemo/Databases"
 )
 
 func main() {

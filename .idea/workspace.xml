@@ -23,17 +23,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ee9b97fd-d245-4522-a205-b31ccb663582" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Controllers/testController.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Databases/mysql.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Middlewares/corsMiddleware.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Models/testModel.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Router/router.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Services/testService.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sessions/session.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Controllers/userControllers.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Models/user.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Services/userService.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Util/resultResponse.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entity/resultResponse.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/testController.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/testModel.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Router/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/Router/router.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/testService.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,6 +66,7 @@
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
     <property name="last_opened_file_path" value="$USER_HOME$" />
     <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="File.Encoding" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -115,28 +115,29 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="752" y="353" key="#Go_Modules" timestamp="1597203246536">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="752" y="353" key="#Go_Modules/0.0.1920.1040@0.0.1920.1040" timestamp="1597203246536" />
-    <state width="1877" height="348" key="GridCell.Tab.0.bottom" timestamp="1597222896522">
+    <state width="1877" height="250" key="GridCell.Tab.0.bottom" timestamp="1597299973910">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="348" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1597222896522" />
-    <state width="1877" height="348" key="GridCell.Tab.0.center" timestamp="1597222896522">
+    <state width="1877" height="250" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1597299973910" />
+    <state width="1877" height="250" key="GridCell.Tab.0.center" timestamp="1597299973910">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="348" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1597222896522" />
-    <state width="1877" height="348" key="GridCell.Tab.0.left" timestamp="1597222896522">
+    <state width="1877" height="250" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1597299973910" />
+    <state width="1877" height="250" key="GridCell.Tab.0.left" timestamp="1597299973910">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="348" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1597222896522" />
-    <state width="1877" height="348" key="GridCell.Tab.0.right" timestamp="1597222896522">
+    <state width="1877" height="250" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1597299973910" />
+    <state width="1877" height="250" key="GridCell.Tab.0.right" timestamp="1597299973910">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="348" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1597222896522" />
+    <state width="1877" height="250" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1597299973910" />
     <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1597222896522">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -153,40 +154,13 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="348" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1597222896522" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1597202475230">
+    <state x="461" y="164" key="SettingsEditor" timestamp="1597284391348">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1597202475230" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/Router/router.go</url>
-          <line>18</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/Controllers/testController.go</url>
-          <line>13</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/Controllers/testController.go</url>
-          <line>11</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/Controllers/testController.go</url>
-          <line>15</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/Controllers/testController.go</url>
-          <line>19</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <state x="461" y="164" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1597284391348" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1597283950929">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1597283950929" />
   </component>
 </project>
