@@ -19,3 +19,9 @@ func (this *ResultResponse)SuccessResult(user Models.User)(reResponse ResultResp
 	reResponse.Data=user
 	return
 }
+func (this *ResultResponse)SuccessResultList(user []Models.User)(reResponse ResultResponse) {
+	reResponse.Code=1
+	reResponse.Message="success"
+	reResponse.Data=user
+	return
+}

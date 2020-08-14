@@ -1,18 +1,18 @@
 package Services
 
 import (
+	"GinDemo/Dao"
 	"GinDemo/Models"
+	"GinDemo/Services/ServiceModels"
 )
 
-type User struct {
-	UserName string
-	UserLoginName	string
-	UserPassword string
+func FindUser(user2 ServiceModels.User)(user Models.User,err error)  {
+	//对controller接受到的数据进行匹配
+	user,err =Dao.FindUser(user2)
+	return
 }
-
-func (this *User)Find()(user Models.User,err error)  {
-	user.UserName=this.UserName
-	user.UserPassword=this.UserPassword
-	user,err =user.Find()
+func FindAllUser()(user []Models.User,err error)  {
+	//对controller接受到的数据进行匹配
+	user,err =Dao.FindAllUser()
 	return
 }
