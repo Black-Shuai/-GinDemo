@@ -3,15 +3,17 @@ package Models
 
 //与数据库表格字段相对应
 type User struct {
-	Id 				int64 `json:"id"`
+	Id 				string `json:"id"`
 	OpenId 			string `json:"open_id"`
 	UserName 		string `json:"user_name"`
 	UserSex 		string `json:"user_sex"`
 	UserMobile 		string `json:"user_mobile"`
 	UserLoginName	string `json:"user_login_name"`
 	UserPassword 	string `json:"user_password"`
-	//CreateTime 		string `json:"create_time"`
-	//UpdateTime 		string `json:"update_time"`
+	CreateTime 		string `json:"create_time"`
+	UpdateTime 		string `json:"update_time"`
+	//根据所添加的外键，检索将对应的外键与相匹配的表格做连接
+	Sex Sex `gorm:"ForeignKey:UserSex;"`
 }
 
 //设置Test的表名为`tb_user`

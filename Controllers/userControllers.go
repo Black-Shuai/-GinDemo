@@ -5,6 +5,7 @@ import (
 	"GinDemo/Services"
 	"GinDemo/Services/ServiceModels"
 	"GinDemo/Util"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	//"strconv"
@@ -24,7 +25,7 @@ func FindUser(c *gin.Context) {
 		return
 	}
 	user,err=Services.FindUser(userlogin)
-	if err != nil||user.Id==0{
+	if err != nil||user.Id==""{
 		c.JSON(http.StatusOK,resResponse.ErrResult())
 		return
 	}else {
@@ -39,5 +40,17 @@ func FindAllUser(c *gin.Context) {
 		return
 	}else {
 		c.JSON(http.StatusOK,resResponse.SuccessResultList(userList))
+	}
+}
+//查找全部用户
+func Login(c *gin.Context) {
+	err :=c.ShouldBindJSON(&user)
+	fmt.Println(user)
+	userList,err:=Services.Login(user)
+	if err != nil{
+		c.JSON(http.StatusOK,resResponse.ErrResult())
+		return
+	}else {
+		c.JSON(http.StatusOK,resResponse.SuccessResultList1(userList))
 	}
 }

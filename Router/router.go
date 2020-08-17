@@ -24,6 +24,7 @@ func InitRouter() {
 	{
 		v1.POST("/findUser", Controllers.FindUser)
 		v1.POST("/findAllUser", Controllers.FindAllUser)
+		v1.POST("/login", Controllers.Login)
 	}
 
 	router.Run(":8080")

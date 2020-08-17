@@ -1,6 +1,9 @@
 package Util
 
-import "GinDemo/Models"
+import (
+	"GinDemo/Dao"
+	"GinDemo/Models"
+)
 
 type ResultResponse struct {
 	Code int
@@ -20,6 +23,12 @@ func (this *ResultResponse)SuccessResult(user Models.User)(reResponse ResultResp
 	return
 }
 func (this *ResultResponse)SuccessResultList(user []Models.User)(reResponse ResultResponse) {
+	reResponse.Code=1
+	reResponse.Message="success"
+	reResponse.Data=user
+	return
+}
+func (this *ResultResponse)SuccessResultList1(user Dao.Resultq)(reResponse ResultResponse) {
 	reResponse.Code=1
 	reResponse.Message="success"
 	reResponse.Data=user
