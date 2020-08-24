@@ -13,7 +13,7 @@ type ResultResponse struct {
 
 func (this *ResultResponse)ErrResult()(resResponse ResultResponse)  {
 	resResponse.Code=0
-	resResponse.Message="error"
+	resResponse.Message="用户名或密码错误"
 	return
 }
 func (this *ResultResponse)SuccessResult(user Models.User)(reResponse ResultResponse) {

@@ -26,6 +26,11 @@ func InitRouter() {
 		v1.POST("/findAllUser", Controllers.FindAllUser)
 		v1.POST("/login", Controllers.Login)
 	}
+	v2 :=router.Group("/api/file")
+	{
+		v2.POST("/upload", Controllers.Upload)
+		v2.GET("/getimage/:imageName",Controllers.GetImage)
+	}
 
-	router.Run(":8080")
+	router.Run(":8088")
 }
