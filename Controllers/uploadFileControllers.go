@@ -31,12 +31,16 @@ func Upload(ctx *gin.Context) {
 		"Code":1,
 		"Message":"上传文件成功",
 		"urlPath":"http://localhost:8088/api/file/getimage/"+fileName,
+		//"urlPath":"http://localhost:8088/api/file/getimage/"+fileName,
 	})
 }
 func GetImage(c *gin.Context){
 	imageName := c.Param("imageName")
 	//存储文件的路径
-	path :="D:/GOWORK/src/GinDemo/file/"
+	//私人电脑存储文件路径
+	path :="D:/Golang/GoWorks/src/GinDemo/file/"
+	//公司电脑存储文件路径
+	//path :="D:/GOWORK/src/GinDemo/file/"
 	file, _ := ioutil.ReadFile(path+imageName)
 	c.Writer.WriteString(string(file))
 }
