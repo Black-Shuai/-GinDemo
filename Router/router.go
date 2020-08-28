@@ -31,6 +31,10 @@ func InitRouter() {
 		v2.POST("/upload", Controllers.Upload)
 		v2.GET("/getimage/:imageName",Controllers.GetImage)
 	}
+	v3 :=router.Group("/api/article")
+	{
+		v3.POST("/addarticle", Controllers.AddArticle)
+	}
 
 	router.Run(":8088")
 }
