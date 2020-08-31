@@ -34,6 +34,7 @@ func InitRouter() {
 	v3 :=router.Group("/api/article")
 	{
 		v3.POST("/addarticle", Controllers.AddArticle)
+		v3.GET("/findallarticle", Controllers.FindAllArticle)
 	}
 
 	router.Run(":8088")

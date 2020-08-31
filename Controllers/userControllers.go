@@ -41,8 +41,9 @@ func FindAllUser(c *gin.Context) {
 		c.JSON(http.StatusOK,resResponse.SuccessResultList(userList))
 	}
 }
-//查找全部用户
+//查找登录用户
 func Login(c *gin.Context) {
+	Util.InitTime()
 	err :=c.ShouldBindJSON(&user)
 	userList,err:=Services.Login(user)
 	if err != nil||userList.Id==""{
