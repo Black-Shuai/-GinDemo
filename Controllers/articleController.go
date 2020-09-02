@@ -48,3 +48,36 @@ func FindAllArticle(ctx *gin.Context)  {
 		})
 	}
 }
+
+//查找文章大体分类
+func FindGeneralsort(ctx *gin.Context)  {
+	result,err :=Services.FindAllGeneral()
+	if err != nil {
+		ctx.JSON(http.StatusBadRequest,gin.H{
+			"Code":0,
+			"Message":"数据获取错误",
+		})
+	}else {
+		ctx.JSON(http.StatusOK,gin.H{
+			"Code":1,
+			"Message":"数据获取成功",
+			"Data":result,
+		})
+	}
+}//查找文章分类
+func FindArticlesort(ctx *gin.Context)  {
+	generalsort := ctx.Query("generalsort")
+	result,err :=Services.FindAllArticleSort(generalsort)
+	if err != nil {
+		ctx.JSON(http.StatusBadRequest,gin.H{
+			"Code":0,
+			"Message":"数据获取错误",
+		})
+	}else {
+		ctx.JSON(http.StatusOK,gin.H{
+			"Code":1,
+			"Message":"数据获取成功",
+			"Data":result,
+		})
+	}
+}

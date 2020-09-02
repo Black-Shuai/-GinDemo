@@ -13,8 +13,8 @@ func FindAllArticle() (article []Models.Article,err error)  {
 	return Dao.FindArticleMapper()
 }
 //查找文章具体分类
-func FindAllArticleSort() (articlesort []Models.ArticleSort,err error)  {
-	return Dao.FindArticleSortMapper()
+func FindAllArticleSort(generalsort string) (articlesort []Models.ArticleSort,err error)  {
+	return Dao.FindArticleSortMapper(generalsort)
 }
 //查找文章大体分类
 func FindAllGeneral() (general []Models.GeneralSort,err error)  {
