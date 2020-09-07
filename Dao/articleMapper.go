@@ -17,9 +17,14 @@ func FindArticleMapper()(article []Models.Article,err error)  {
 	Mysql.DB.Find(&article)
 	return
 }
+//按照ID查找查找文章
+func FindArticleByIdMapper(articleid string)(article []Models.Article,err error)  {
+	Mysql.DB.Where("id=?",articleid).Find(&article)
+	return
+}
 //查找文章分类
 func FindArticleSortMapper(generalsort string)(article []Models.ArticleSort,err error)  {
-	Mysql.DB.Find(&article).Where("general_sort=?",generalsort)
+	Mysql.DB.Where("general_sort=?",generalsort).Find(&article)
 	return
 }
 //查找文章的大体分类

@@ -3,8 +3,9 @@ package Models
 type Article struct {
 	Id int `json:"id"`
 	Title string `json:"title"`
-	ArticleSort string `json:"article_sort"`
+	ArticleSort int `json:"article_sort"`
 	Content string `json:"content"`
+	Background string `json:"background"`
 	CreatedTime string `json:"created_time"`
 }
 

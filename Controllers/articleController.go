@@ -35,7 +35,24 @@ func AddArticle(ctx *gin.Context)  {
 //查找全部文章
 func FindAllArticle(ctx *gin.Context)  {
 	result,err :=Services.FindAllArticle()
-	if err != nil {
+	if err != nil||len(result)==0 {
+		ctx.JSON(http.StatusBadRequest,gin.H{
+			"Code":0,
+			"Message":"数据获取错误",
+		})
+	}else {
+		ctx.JSON(http.StatusOK,gin.H{
+			"Code":1,
+			"Message":"数据获取成功",
+			"Data":result,
+		})
+	}
+}
+//根据id查找文章
+func FindArticleById(ctx *gin.Context)  {
+	articleid := ctx.Query("articleid")
+	result,err :=Services.FindArticleByIdMapper(articleid)
+	if err != nil||len(result)==0 {
 		ctx.JSON(http.StatusBadRequest,gin.H{
 			"Code":0,
 			"Message":"数据获取错误",
@@ -52,7 +69,7 @@ func FindAllArticle(ctx *gin.Context)  {
 //查找文章大体分类
 func FindGeneralsort(ctx *gin.Context)  {
 	result,err :=Services.FindAllGeneral()
-	if err != nil {
+	if err != nil||len(result)==0 {
 		ctx.JSON(http.StatusBadRequest,gin.H{
 			"Code":0,
 			"Message":"数据获取错误",
@@ -68,7 +85,7 @@ func FindGeneralsort(ctx *gin.Context)  {
 func FindArticlesort(ctx *gin.Context)  {
 	generalsort := ctx.Query("generalsort")
 	result,err :=Services.FindAllArticleSort(generalsort)
-	if err != nil {
+	if err != nil||len(result)==0 {
 		ctx.JSON(http.StatusBadRequest,gin.H{
 			"Code":0,
 			"Message":"数据获取错误",

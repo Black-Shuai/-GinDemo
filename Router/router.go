@@ -35,6 +35,9 @@ func InitRouter() {
 	{
 		v3.POST("/addarticle", Controllers.AddArticle)
 		v3.GET("/findallarticle", Controllers.FindAllArticle)
+		v3.GET("/findgeneralsort", Controllers.FindGeneralsort)
+		v3.GET("/findarticlesort", Controllers.FindArticlesort)
+		v3.GET("/findarticlebyid", Controllers.FindArticleById)
 	}
 
 	router.Run(":8088")
