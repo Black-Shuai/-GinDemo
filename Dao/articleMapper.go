@@ -3,18 +3,42 @@ package Dao
 import (
 	Mysql "GinDemo/Databases"
 	"GinDemo/Models"
+	"fmt"
 )
 
 //向文章添加内容
-func InsertArticleMapper(article Models.Article)(err error)  {
+func InsertArticleMapper(article Models.Article)(art Models.Article,err error)  {
 	//Mysql.DB.Raw("insert into tb_article (title,content,created_time) values('test','testcontent','2020-08-28 11:33:28')")
 	dberr:=Mysql.DB.Create(&article)
 	err=dberr.Error
+	art=article
+	//fmt.Println(art)
 	return
+}
+//添加多余的文章
+func InsertContentMapper(content []Models.TbContent) error {
+	sql:="Insert into tb_content (`content`,`number`,`article_id`) values "
+	for i,e:=range content{
+		if len(content)-1 == i {
+			//最后一条数据 以分号结尾
+			sql += fmt.Sprintf("('%s','%d','%d');",e.Content, e.Number, e.ArticleId,)
+		}else {
+			sql += fmt.Sprintf("('%s','%d','%d'),",e.Content, e.Number, e.ArticleId,)
+		}
+	}
+	err:=Mysql.DB.Exec(sql)
+	fmt.Println("true")
+	return err.Error
 }
 //查找全部文章
 func FindArticleMapper()(article []Models.Article,err error)  {
 	Mysql.DB.Find(&article)
+	//var conx Models.TbContent
+	//var i int
+	//j:=0
+	//for i=1;i<=len(article);i++{
+	//	Mysql.DB.Where("number=? and article_id=?",i,article)
+	//}
 	return
 }
 //按照ID查找查找文章
