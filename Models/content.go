@@ -6,3 +6,6 @@ type TbContent struct {
 	Number int `json:"number"`
 	ArticleId int `json:"article_id"`
 }
+func (TbContent)TableName() string {
+	return "tb_content"
+}

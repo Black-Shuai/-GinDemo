@@ -33,17 +33,21 @@ func InsertContentMapper(content []Models.TbContent) error {
 //查找全部文章
 func FindArticleMapper()(article []Models.Article,err error)  {
 	Mysql.DB.Find(&article)
-	//var conx Models.TbContent
-	//var i int
-	//j:=0
-	//for i=1;i<=len(article);i++{
-	//	Mysql.DB.Where("number=? and article_id=?",i,article)
-	//}
 	return
 }
 //按照ID查找查找文章
 func FindArticleByIdMapper(articleid string)(article []Models.Article,err error)  {
+	var conx []Models.TbContent
 	Mysql.DB.Where("id=?",articleid).Find(&article)
+	total := 0
+	Mysql.DB.Find(&conx).Where("article_id=?",articleid).Count(&total)
+	if total!=0{
+		for i:=1;i<=total;i++{
+			var con Models.TbContent
+			Mysql.DB.Where("number=? and article_id=?",i,articleid).Find(&con)
+			article[0].Content=article[0].Content+con.Content
+		}
+	}
 	return
 }
 //查找文章分类
