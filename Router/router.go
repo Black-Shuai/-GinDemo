@@ -39,6 +39,10 @@ func InitRouter() {
 		v3.GET("/findarticlesort", Controllers.FindArticlesort)
 		v3.GET("/findarticlebyid", Controllers.FindArticleById)
 	}
+	v4 :=router.Group("/api/leavemessage")
+	{
+		v4.GET("/getleavemessage",Controllers.FindAllLeaveMessage)
+	}
 
 	router.Run(":8088")
 }

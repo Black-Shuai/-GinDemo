@@ -19,7 +19,10 @@ func FindUser(user2 ServiceModels.User)(user Models.User,err error)  {
 }
 
 func FindAllUser()(user []Models.User,err error)  {
-	Mysql.DB.Find(&user)
+	Mysql.DB.Order("UpdateTime desc").Find(&user)
+	for i:=0;i<len(user);i++{
+		Mysql.DB.Preload("Sex").Find(&user[i])
+	}
 	return
 }
 
