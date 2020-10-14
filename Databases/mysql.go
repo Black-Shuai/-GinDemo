@@ -10,8 +10,8 @@ var DB *gorm.DB
 
 func init()  {
 	var err error
-	DB, err = gorm.Open("mysql", "root:123456@tcp(127.0.0.1:3306)/golangblog?charset=utf8&parseTime=True&loc=Local")
-	//DB, err = gorm.Open("mysql", "root:134120@tcp(127.0.0.1:3306)/iscm?charset=utf8&parseTime=True&loc=Local")
+	//DB, err = gorm.Open("mysql", "root:123456@tcp(127.0.0.1:3306)/golangblog?charset=utf8&parseTime=True&loc=Local")
+	DB, err = gorm.Open("mysql", "root:134120@tcp(127.0.0.1:3306)/golangblog?charset=utf8&parseTime=True&loc=Local")
 	if err != nil {
 		fmt.Printf("mysql connect error %v", err)
 	}

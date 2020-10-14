@@ -4,6 +4,7 @@ import (
 	"GinDemo/Models"
 	"GinDemo/Services"
 	"GinDemo/Util"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
@@ -11,6 +12,8 @@ import (
 func AddArticle(ctx *gin.Context)  {
 	var article Models.Article
 	err:=ctx.ShouldBindJSON(&article)
+	fmt.Println(len([]rune(article.Content)))
+	article.Content=string([]rune(article.Content)[:15380])
 	//获取当前时间，并赋值给结构体
 	article.CreatedTime=Util.InitTime()
 	if err != nil {
