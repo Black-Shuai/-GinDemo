@@ -1,7 +1,7 @@
 package Models
 
 type Sex struct {
-	Id string
+	Id string `gorm:"primary_key"`
 	Name string
 }
 

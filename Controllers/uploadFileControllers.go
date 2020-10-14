@@ -41,6 +41,11 @@ func GetImage(c *gin.Context){
 	path :="D:/Golang/GoWorks/src/GinDemo/file/"
 	//公司电脑存储文件路径
 	//path :="D:/GOWORK/src/GinDemo/file/"
+<<<<<<< HEAD
+=======
+	//Windows服务器文件存储位置
+	path:="file/"
+>>>>>>> 8988900fad6664a36e8ba6f466b639caf701152a
 	file, _ := ioutil.ReadFile(path+imageName)
 	c.Writer.WriteString(string(file))
 }
