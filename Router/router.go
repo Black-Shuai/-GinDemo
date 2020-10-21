@@ -29,12 +29,13 @@ func InitRouter() {
 	v2 :=router.Group("/api/file")
 	{
 		v2.POST("/upload", Controllers.Upload)
-		v2.GET("/getimage/:imageName",Controllers.GetImage)
+		v2.GET("/getimage",Controllers.GetImage)
 	}
 	v3 :=router.Group("/api/article")
 	{
 		v3.POST("/addarticle", Controllers.AddArticle)
 		v3.GET("/findallarticle", Controllers.FindAllArticle)
+		v3.GET("/findarticle6", Controllers.FindArticle6)
 		v3.GET("/findgeneralsort", Controllers.FindGeneralsort)
 		v3.GET("/findarticlesort", Controllers.FindArticlesort)
 		v3.GET("/findarticlebyid", Controllers.FindArticleById)
@@ -42,6 +43,7 @@ func InitRouter() {
 	v4 :=router.Group("/api/leavemessage")
 	{
 		v4.GET("/getleavemessage",Controllers.FindAllLeaveMessage)
+		v4.POST("/addleavemessage",Controllers.AddLeaveMessage)
 	}
 
 	router.Run(":8088")

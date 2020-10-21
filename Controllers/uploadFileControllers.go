@@ -4,6 +4,8 @@ import (
 	"github.com/gin-gonic/gin"
 	"io/ioutil"
 	"net/http"
+	"os"
+	"time"
 )
 
 func Upload(ctx *gin.Context) {
@@ -15,34 +17,35 @@ func Upload(ctx *gin.Context) {
 	}
 	//获取文件名
 	fileName := file.Filename
+	var fName=time.Now().Format("2006-01")//获取当前时间以便于文件创建
+	_,ferr := os.Stat("file/"+fName)//检查文件夹是否存在
+	if ferr == nil {
+	}
+	if ferr!=nil {//文件夹不存在则创建新的文件夹
+		os.MkdirAll("file/"+fName, os.ModePerm)
+	}
 	//保存文件到服务器本地
 	//存储与项目文件夹下的file文件夹下
-	filePath :="file/"+fileName
+	filePath :="file/"+fName+"/"+fileName
 	//SaveUploadedFile(文件头，保存路径)
-	if err := ctx.SaveUploadedFile(file, filePath); err != nil {
+	xerr := ctx.SaveUploadedFile(file, filePath);
+	if  xerr != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{
 			"Code":0,
 			"Message":"上传文件失败",
-			"error":err.Error(),
+			"error":xerr.Error(),
 		})
 		return
 	}
 	ctx.JSON(http.StatusOK, gin.H{
 		"Code":1,
 		"Message":"上传文件成功",
-		//"urlPath":"http://localhost:8088/api/file/getimage/"+fileName,
-		"urlPath":"http://localhost:8088/api/file/getimage/"+fileName,
+		"urlPath":"http://localhost:8088/api/file/getimage?imageName="+fName+"/"+fileName,
 	})
 }
 func GetImage(c *gin.Context){
-	imageName := c.Param("imageName")
-	//存储文件的路径
-	//私人电脑存储文件路径
-	path :="D:/Golang/GoWorks/src/GinDemo/file/"
-	//公司电脑存储文件路径
-	//path :="D:/GOWORK/src/GinDemo/file/"
-	//Windows服务器文件存储位置
-	//path:="file/"
-	file, _ := ioutil.ReadFile(path+imageName)
+	imageName := c.Query("imageName")
+	path:="file/"+imageName
+	file, _ := ioutil.ReadFile(path)
 	c.Writer.WriteString(string(file))
 }

@@ -9,6 +9,10 @@ import (
 //查找留言内容
 func FindLeaveMessageService()(lea []Models.LeaveMessage,err error)  {
 	lea,err=Dao.FindLeaveMessageMapper()
-	fmt.Println(lea)
 	return
+}
+//添加留言
+func AddLeaveMessageService(message Models.LeaveMessage) bool {
+	fmt.Println(message)
+	return Dao.AddLeaveMessageMapper(message)
 }

@@ -17,6 +17,10 @@ func InsertContent(contentx []Models.TbContent) error  {
 func FindAllArticle() (article []Models.Article,err error)  {
 	return Dao.FindArticleMapper()
 }
+//查找前6条文章
+func FindArticle6() (article []Models.Article,err error)  {
+	return Dao.FindArticle6()
+}
 //查找全部文章
 func FindArticleByIdMapper(articleid string) (article []Models.Article,err error)  {
 	return Dao.FindArticleByIdMapper(articleid)

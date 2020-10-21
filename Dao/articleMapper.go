@@ -34,6 +34,10 @@ func InsertContentMapper(content []Models.TbContent) error {
 func FindArticleMapper()(article []Models.Article,err error)  {
 	Mysql.DB.Find(&article)
 	return
+}//查找前6条文章
+func FindArticle6()(article []Models.Article,err error)  {
+	Mysql.DB.Raw("select a.id,b.article_sort as article_sort,a.title,a.content,a.background,a.created_time from tb_article as a,db_articlesort as b where a.article_sort=b.id order by a.id desc limit 6",).Scan(&article)
+	return
 }
 //按照ID查找查找文章
 func FindArticleByIdMapper(articleid string)(article []Models.Article,err error)  {

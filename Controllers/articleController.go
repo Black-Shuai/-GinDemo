@@ -76,6 +76,22 @@ func FindAllArticle(ctx *gin.Context)  {
 		})
 	}
 }
+//查找全部文章
+func FindArticle6(ctx *gin.Context)  {
+	result,err :=Services.FindArticle6()
+	if err != nil||len(result)==0 {
+		ctx.JSON(http.StatusBadRequest,gin.H{
+			"Code":0,
+			"Message":"数据获取错误",
+		})
+	}else {
+		ctx.JSON(http.StatusOK,gin.H{
+			"Code":1,
+			"Message":"数据获取成功",
+			"Data":result,
+		})
+	}
+}
 //根据id查找文章
 func FindArticleById(ctx *gin.Context)  {
 	articleid := ctx.Query("articleid")
