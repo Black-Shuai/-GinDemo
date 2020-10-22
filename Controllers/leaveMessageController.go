@@ -43,7 +43,36 @@ func AddLeaveMessage(ctx *gin.Context)  {
 				"Code":1,
 				"Message":"留言添加成功",
 			})
+		}else {
+			ctx.JSON(http.StatusExpectationFailed,gin.H{
+				"Code":0,
+				"Message":"存储数据错误",
+			})
 		}
 	}
 
+}
+//添加回答问题信息
+func AddLeaveAnswer(ctx *gin.Context)  {
+	var leaveAnswer Models.LeaveAnswer
+	err:=ctx.ShouldBindJSON(leaveAnswer)
+	if err != nil {
+		ctx.JSON(http.StatusBadRequest,gin.H{
+			"Code":0,
+			"Message":"提交数据错误",
+		})
+	}else {
+		res:=Services.AddLeaveAnswerService(leaveAnswer)
+		if res {
+			ctx.JSON(http.StatusOK,gin.H{
+				"Code":1,
+				"Message":"回答添加成功",
+			})
+		}else {
+			ctx.JSON(http.StatusExpectationFailed,gin.H{
+				"Code":0,
+				"Message":"存储数据错误",
+			})
+		}
+	}
 }

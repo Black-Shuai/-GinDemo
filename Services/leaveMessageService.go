@@ -16,3 +16,9 @@ func AddLeaveMessageService(message Models.LeaveMessage) bool {
 	fmt.Println(message)
 	return Dao.AddLeaveMessageMapper(message)
 }
+
+//添加留言
+func AddLeaveAnswerService(answer Models.LeaveAnswer) bool {
+	fmt.Println(answer)
+	return Dao.AddLeaveAnswerMapper(answer)
+}
