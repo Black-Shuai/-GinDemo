@@ -6,6 +6,7 @@ type LeaveMessage struct {
 	Email string `json:"email"`
 	Leavemessage string `json:"leavemessage"`
 	NextId string `json:"next_id"`
+	ForAuthor string `json:"for_author"`
 	CreateTime string `json:"create_time"`
 	LeaveAnswer LeaveAnswer `gorm:"ForeignKey:NextId;"`
 }

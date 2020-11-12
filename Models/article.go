@@ -5,6 +5,7 @@ type Article struct {
 	Title string `json:"title"`
 	ArticleSort string `json:"article_sort"`
 	Content string `json:"content"`
+	Author string `json:"author"`
 	Background string `json:"background"`
 	CreatedTime string `json:"created_time"`
 }

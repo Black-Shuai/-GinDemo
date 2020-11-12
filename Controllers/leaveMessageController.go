@@ -4,6 +4,7 @@ import (
 	"GinDemo/Models"
 	"GinDemo/Services"
 	"GinDemo/Util"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
@@ -28,6 +29,7 @@ func FindAllLeaveMessage(ctx *gin.Context)  {
 func AddLeaveMessage(ctx *gin.Context)  {
 	var leaveMessage Models.LeaveMessage
 	err:=ctx.ShouldBindJSON(&leaveMessage)
+	fmt.Println(leaveMessage)
 	if err != nil {
 		ctx.JSON(http.StatusBadRequest,gin.H{
 			"Code":0,
@@ -36,7 +38,6 @@ func AddLeaveMessage(ctx *gin.Context)  {
 	}else {
 		//获取当前时间，并赋值给结构体
 		leaveMessage.CreateTime=Util.InitTime()
-		leaveMessage.NextId=""
 		res:=Services.AddLeaveMessageService(leaveMessage)
 		if res {
 			ctx.JSON(http.StatusOK,gin.H{
@@ -55,13 +56,16 @@ func AddLeaveMessage(ctx *gin.Context)  {
 //添加回答问题信息
 func AddLeaveAnswer(ctx *gin.Context)  {
 	var leaveAnswer Models.LeaveAnswer
-	err:=ctx.ShouldBindJSON(leaveAnswer)
+	err:=ctx.ShouldBindJSON(&leaveAnswer)
+	fmt.Println(leaveAnswer)
 	if err != nil {
 		ctx.JSON(http.StatusBadRequest,gin.H{
 			"Code":0,
 			"Message":"提交数据错误",
 		})
 	}else {
+		//获取当前时间，并赋值给结构体
+		leaveAnswer.CreateTime=Util.InitTime()
 		res:=Services.AddLeaveAnswerService(leaveAnswer)
 		if res {
 			ctx.JSON(http.StatusOK,gin.H{

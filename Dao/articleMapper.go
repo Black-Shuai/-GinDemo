@@ -32,7 +32,7 @@ func InsertContentMapper(content []Models.TbContent) error {
 }
 //查找全部文章
 func FindArticleMapper()(article []Models.Article,err error)  {
-	Mysql.DB.Find(&article)
+	Mysql.DB.Order("id desc").Find(&article)
 	return
 }//查找前6条文章
 func FindArticle6()(article []Models.Article,err error)  {

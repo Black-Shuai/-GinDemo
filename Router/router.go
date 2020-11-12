@@ -29,6 +29,7 @@ func InitRouter() {
 	v2 :=router.Group("/api/file")
 	{
 		v2.POST("/upload", Controllers.Upload)
+		v2.POST("/MultipartUpload", Controllers.MultipartUpload)
 		v2.GET("/getimage",Controllers.GetImage)
 	}
 	v3 :=router.Group("/api/article")
@@ -44,6 +45,11 @@ func InitRouter() {
 	{
 		v4.GET("/getleavemessage",Controllers.FindAllLeaveMessage)
 		v4.POST("/addleavemessage",Controllers.AddLeaveMessage)
+		v4.POST("/addLeaveAnswer",Controllers.AddLeaveAnswer)
+	}
+	v5 :=router.Group("/api/image")
+	{
+		v5.GET("/getimageList",Controllers.FindImageListController)
 	}
 
 	router.Run(":8088")

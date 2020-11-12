@@ -14,7 +14,8 @@ func AddArticle(ctx *gin.Context)  {
 	var contentx []Models.TbContent
 	err:=ctx.ShouldBindJSON(&article)
 	fmt.Println(len([]rune(article.Content)))
-	article.Content=string([]rune(article.Content)[:15380])
+	article.Content=string([]rune(article.Content)[:len(article.Content)-1])
+	//fmt.Println(article.Content)
 	//获取当前时间，并赋值给结构体
 	article.CreatedTime=Util.InitTime()
 	if err != nil {
