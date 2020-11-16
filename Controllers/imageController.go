@@ -5,6 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
+//查找图片数据
 func FindImageListController(c *gin.Context)  {
 	imageList,err:=Services.FindImageListService()
 	if err != nil {
@@ -18,3 +19,4 @@ func FindImageListController(c *gin.Context)  {
 			})
 	}
 }
+

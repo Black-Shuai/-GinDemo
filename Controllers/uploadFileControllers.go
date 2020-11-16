@@ -47,18 +47,29 @@ func Upload(ctx *gin.Context) {
 }
 //上传多个文件
 func MultipartUpload(c *gin.Context)  {
-	// Multipart form
+	// 多文件
 	form, _ := c.MultipartForm()
-	files := form.File["file"]
-
-	for index, file := range files {
+	var fileList[] string
+	files := form.File["MultipartFile"]
+	var fName=time.Now().Format("2006-01")//获取当前时间以便于文件创建
+	_,ferr := os.Stat("file/"+fName)//检查文件夹是否存在
+	if ferr == nil {
+	}
+	if ferr!=nil {//文件夹不存在则创建新的文件夹
+		os.MkdirAll("file/"+fName, os.ModePerm)
+	}
+	for _, file := range files {
 		log.Println(file.Filename)
-		dst := fmt.Sprintf("file/", file.Filename, index)
-		// 上传文件到指定的目录
+
+		dst :="file/"+fName+"/"+file.Filename
+		// 上传文件到指定的路径
 		c.SaveUploadedFile(file, dst)
+		fileList=append(fileList,"http://localhost:8088/api/file/getimage?imageName="+fName+"/"+file.Filename )
 	}
 	c.JSON(http.StatusOK, gin.H{
-		"message": fmt.Sprintf("%d files uploaded!", len(files)),
+		"Code":1,
+		"Message":"上传文件成功",
+		"urlPath":fileList,
 	})
 }
 func GetImage(c *gin.Context){

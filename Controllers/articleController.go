@@ -9,6 +9,7 @@ import (
 	"net/http"
 )
 
+//添加文章
 func AddArticle(ctx *gin.Context)  {
 	var article Models.Article
 	var contentx []Models.TbContent
@@ -61,6 +62,7 @@ func AddArticle(ctx *gin.Context)  {
 	}
 
 }
+
 //查找全部文章
 func FindAllArticle(ctx *gin.Context)  {
 	result,err :=Services.FindAllArticle()
@@ -77,7 +79,8 @@ func FindAllArticle(ctx *gin.Context)  {
 		})
 	}
 }
-//查找全部文章
+
+//查找前6篇文章
 func FindArticle6(ctx *gin.Context)  {
 	result,err :=Services.FindArticle6()
 	if err != nil||len(result)==0 {
@@ -126,7 +129,8 @@ func FindGeneralsort(ctx *gin.Context)  {
 			"Data":result,
 		})
 	}
-}//查找文章分类
+}
+//查找文章分类
 func FindArticlesort(ctx *gin.Context)  {
 	generalsort := ctx.Query("generalsort")
 	result,err :=Services.FindAllArticleSort(generalsort)
