@@ -50,6 +50,10 @@ func InitRouter() {
 	v5 :=router.Group("/api/image")
 	{
 		v5.GET("/getimageList",Controllers.FindImageListController)
+		v5.GET("/findImage",Controllers.FindImageController)
+		v5.GET("/findImageDetail",Controllers.FindImageDetailController)
+		v5.POST("/addImageDetail",Controllers.AddImageDetailController)
+		v5.POST("/addImageList",Controllers.AddImageListController)
 	}
 
 	router.Run(":8088")

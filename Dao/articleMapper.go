@@ -64,3 +64,18 @@ func FindGeneralSortMapper()(general []Models.GeneralSort,err error)  {
 	Mysql.DB.Find(&general)
 	return
 }
+
+func FindArticlexMapper(id int)(article []Models.Article)  {
+	var general Models.GeneralSort
+	Mysql.DB.Where("id=?",id).Find(&general)
+	var articlesort []Models.ArticleSort
+	Mysql.DB.Where("general_sort=?",general.Id).Find(&articlesort)
+	for i:=0; i<len(articlesort);i++{
+		var art []Models.Article
+		Mysql.DB.Where("article_sort=?",articlesort[i].Id).Find(&art)
+		for j:=0;j< len(art);j++{
+			article=append(article,art[j])
+		}
+	}
+	return article
+}
