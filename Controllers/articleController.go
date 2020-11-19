@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"net/http"
+	"strconv"
 )
 
 //添加文章
@@ -66,6 +67,7 @@ func AddArticle(ctx *gin.Context)  {
 //查找全部文章
 func FindAllArticle(ctx *gin.Context)  {
 	result,err :=Services.FindAllArticle()
+	fmt.Println("数据获取",result)
 	if err != nil||len(result)==0 {
 		ctx.JSON(http.StatusBadRequest,gin.H{
 			"Code":0,
@@ -134,6 +136,25 @@ func FindGeneralsort(ctx *gin.Context)  {
 func FindArticlesort(ctx *gin.Context)  {
 	generalsort := ctx.Query("generalsort")
 	result,err :=Services.FindAllArticleSort(generalsort)
+	if err != nil||len(result)==0 {
+		ctx.JSON(http.StatusBadRequest,gin.H{
+			"Code":0,
+			"Message":"数据获取错误",
+		})
+	}else {
+		ctx.JSON(http.StatusOK,gin.H{
+			"Code":1,
+			"Message":"数据获取成功",
+			"Data":result,
+		})
+	}
+}
+//查找文章每个大体分类
+func FindArticlexController(ctx *gin.Context)  {
+	id:=ctx.Query("generalid")
+	generalid,err :=strconv.Atoi(id)
+	fmt.Println(id)
+	result:=Services.FindArticlexServices(generalid)
 	if err != nil||len(result)==0 {
 		ctx.JSON(http.StatusBadRequest,gin.H{
 			"Code":0,

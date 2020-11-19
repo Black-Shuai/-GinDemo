@@ -60,3 +60,8 @@ func Interception(cont string,art int)(tbc []Models.TbContent)  {
 	}
 	return
 }
+
+func FindArticlexServices(id int) (article []Models.Article)  {
+	return Dao.FindArticlexMapper(id)
+
+}
