@@ -41,6 +41,7 @@ func InitRouter() {
 		v3.GET("/findarticlesort", Controllers.FindArticlesort)
 		v3.GET("/findarticlebyid", Controllers.FindArticleById)
 		v3.GET("/findarticle", Controllers.FindArticlexController)
+		v3.GET("/findarticlebysort", Controllers.FindArticleBySortController)
 	}
 	v4 :=router.Group("/api/leavemessage")
 	{

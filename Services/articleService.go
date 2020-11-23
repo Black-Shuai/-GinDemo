@@ -65,3 +65,8 @@ func FindArticlexServices(id int) (article []Models.Article)  {
 	return Dao.FindArticlexMapper(id)
 
 }
+
+func FindArticleBySortService(id int) (article []Models.Article)  {
+	return Dao.FindArticleBySortMapper(id)
+
+}

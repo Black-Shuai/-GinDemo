@@ -64,7 +64,7 @@ func FindGeneralSortMapper()(general []Models.GeneralSort,err error)  {
 	Mysql.DB.Find(&general)
 	return
 }
-
+//由文章大体分类查找文章
 func FindArticlexMapper(id int)(article []Models.Article)  {
 	var general Models.GeneralSort
 	Mysql.DB.Where("id=?",id).Find(&general)
@@ -77,5 +77,10 @@ func FindArticlexMapper(id int)(article []Models.Article)  {
 			article=append(article,art[j])
 		}
 	}
+	return article
+}
+//由文章细节分类查找文章
+func FindArticleBySortMapper(id int)(article []Models.Article)  {
+	Mysql.DB.Where("article_sort=?",id).Find(&article)
 	return article
 }

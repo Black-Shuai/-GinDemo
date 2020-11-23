@@ -135,6 +135,7 @@ func FindGeneralsort(ctx *gin.Context)  {
 //查找文章分类
 func FindArticlesort(ctx *gin.Context)  {
 	generalsort := ctx.Query("generalsort")
+	fmt.Println(generalsort)
 	result,err :=Services.FindAllArticleSort(generalsort)
 	if err != nil||len(result)==0 {
 		ctx.JSON(http.StatusBadRequest,gin.H{
@@ -156,6 +157,26 @@ func FindArticlexController(ctx *gin.Context)  {
 	fmt.Println(id)
 	result:=Services.FindArticlexServices(generalid)
 	if err != nil||len(result)==0 {
+		ctx.JSON(http.StatusBadRequest,gin.H{
+			"Code":0,
+			"Message":"数据获取错误",
+		})
+	}else {
+		ctx.JSON(http.StatusOK,gin.H{
+			"Code":1,
+			"Message":"数据获取成功",
+			"Data":result,
+		})
+	}
+}
+//查找文章每个大体分类
+func FindArticleBySortController(ctx *gin.Context)  {
+	id:=ctx.Query("articlesort")
+	articlesort,err :=strconv.Atoi(id)
+	fmt.Println(id)
+	result:=Services.FindArticleBySortService(articlesort)
+	if err != nil||len(result)==0 {
+		fmt.Println(err)
 		ctx.JSON(http.StatusBadRequest,gin.H{
 			"Code":0,
 			"Message":"数据获取错误",

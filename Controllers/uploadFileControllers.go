@@ -42,7 +42,7 @@ func Upload(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{
 		"Code":1,
 		"Message":"上传文件成功",
-		"urlPath":"http://localhost:8088/api/file/getimage?imageName="+fName+"/"+fileName,
+		"urlPath":"/api/file/getimage?imageName="+fName+"/"+fileName,
 	})
 }
 //上传多个文件
@@ -64,7 +64,7 @@ func MultipartUpload(c *gin.Context)  {
 		dst :="file/"+fName+"/"+file.Filename
 		// 上传文件到指定的路径
 		c.SaveUploadedFile(file, dst)
-		fileList=append(fileList,"http://localhost:8088/api/file/getimage?imageName="+fName+"/"+file.Filename )
+		fileList=append(fileList,"/getimage?imageName="+fName+"/"+file.Filename )
 	}
 	c.JSON(http.StatusOK, gin.H{
 		"Code":1,
